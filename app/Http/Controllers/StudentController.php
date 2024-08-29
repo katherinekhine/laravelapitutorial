@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     public function index()
     {
-        return "This is tutorial";
+        $student = Student::all();
+        return response()->json(['student' => $student], 200);
     }
 }
