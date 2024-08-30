@@ -22,3 +22,4 @@ Route::get('/user', function (Request $request) {
 Route::get('student', [StudentController::class, 'index']);
 Route::post('student', [StudentController::class, 'create']);
 Route::put('student/edit/{id}', [StudentController::class, 'update']);
+Route::delete('student/delete/{id}', [StudentController::class, 'delete']);
