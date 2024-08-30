@@ -36,4 +36,28 @@ class StudentController extends Controller
             ]);
         }
     }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required',
+                'email' => 'required|email',
+                'phone' => 'required',
+            ]
+        );
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->messages()], 422);
+        } else {
+            $student = Student::find($id);
+            $student->name = $request->name;
+            $student->email = $request->email;
+            $student->phone = $request->phone;
+            $student->save();
+            return response()->json([
+                'message' => 'Student updated successfully',
+            ]);
+        }
+    }
 }
